@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace Capstone.Web.Controllers
 {
-    public class HomeController : Controller
+    public class SurveyController : Controller
     {
-
-        // GET: Home
+        // GET: Survey
         public ActionResult Index()
         {
-            return View("Index");
+            return View();
         }
     }
 }
