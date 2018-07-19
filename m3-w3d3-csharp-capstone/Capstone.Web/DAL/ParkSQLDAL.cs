@@ -32,7 +32,7 @@ namespace Capstone.Web.DAL
                     {
                         Park park = new Park();
                         {
-                            park.ParkName = Convert.ToString(reader["parkName"]);  // move above while????
+                            park.ParkName = Convert.ToString(reader["parkName"]);  // move above while loop????
                             park.State = Convert.ToString(reader["state"]);
                             park.ParkDescription = Convert.ToString(reader["parkDescription"]);
 
