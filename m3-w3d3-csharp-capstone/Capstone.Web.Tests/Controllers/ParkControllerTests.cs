@@ -10,13 +10,13 @@ using System.Web.Mvc;
 namespace Capstone.Web.Controllers.Tests
 {
     [TestClass()]
-    public class HomeControllerTests
+    public class ParkControllerTests
     {
         [TestMethod()]
         public void HomeController_IndexAction_ReturnIndexView()
         {
             //Arrange
-            HomeController controller = new HomeController();
+            ParkController controller = new ParkController();
 
             //Act
             ViewResult result = controller.Index() as ViewResult;
