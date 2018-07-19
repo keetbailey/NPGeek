@@ -32,7 +32,7 @@ namespace Capstone.Web.DAL
                     {
                         Park park = new Park();
                         {
-                            park.ParkName = Convert.ToString(reader["parkName"]);
+                            park.ParkName = Convert.ToString(reader["parkName"]);  // move above while????
                             park.State = Convert.ToString(reader["state"]);
                             park.ParkDescription = Convert.ToString(reader["parkDescription"]);
 
@@ -46,9 +46,8 @@ namespace Capstone.Web.DAL
             {
                 throw;
             }
-
         }
-        private Park MapRowToPark(SqlDataReader reader)
+        private Park MapRowToPark(SqlDataReader reader)  // possbly not necessary....
         {
             return new Park()
             {
