@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ParkController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
+    <Compile Include="DAL\IParkSqlDAL.cs" />
     <Compile Include="DAL\ParkSQLDAL.cs" />
     <Compile Include="DAL\SurveySQLDAL.cs" />
     <Compile Include="DAL\WeatherSQLDAL.cs" />
