@@ -10,7 +10,7 @@ namespace Capstone.Web.DAL
 {
     public class WeatherSQLDAL
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekDatabase"].ConnectionString;
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString;
         private const string SqlGetWeather = "SELECT parkCode, fiveDayForecastValue, low, high, forecast FROM weather";
 
         public List<Weather> GetWeather()
@@ -31,7 +31,7 @@ namespace Capstone.Web.DAL
                     while (reader.Read())
                     {
                         Weather weather = new Weather();
-                        weather.ParkCode = Convert.ToString(reader["parCode"]);
+                        weather.ParkCode = Convert.ToString(reader["parkCode"]);
                         weather.FiveDayForecastValue = Convert.ToInt32(reader["fiveDayForecastValue"]);
                         weather.Low = Convert.ToInt32(reader["low"]);
                         weather.High = Convert.ToInt32(reader["high"]);

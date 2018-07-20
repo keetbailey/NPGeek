@@ -10,13 +10,12 @@ namespace Capstone.Web.DAL
 {
     public class SurveySQLDAL
     {
-        private readonly string connectionString;
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString;
         private const string sqlSurvey = "INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel)" + "VALUES (@parkCode, @emailAddress, @state, @activityLevel)";
         private const string sqlGetSurveyResults = "SELECT surveyId, parkCode, emailAddress, state, activityLevel FROM survey_result";
         
-        public SurveySQLDAL(string connectionString)
+        public SurveySQLDAL()
         {
-            this.connectionString = connectionString;
         }
         public void CreateSurvey(SurveyResult survey)
         {

@@ -14,14 +14,12 @@ namespace Capstone.Web.Controllers
 
         public SurveyController()
         {
-            surveyDAL = new SurveySQLDAL(connectionString);
+            surveyDAL = new SurveySQLDAL();
         }
         // GET: Survey
         public ActionResult Index()
         {
-
             return View();
-
         }
     }
 }

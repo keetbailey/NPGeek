@@ -10,7 +10,7 @@ namespace Capstone.Web.DAL
 {
     public class ParkSQLDAL : IParkSqlDAL
     {
-        private readonly string connectionString;
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString;
         private const string sqlPark = "SELECT parkName, state, parkDescription FROM park";
         private const string parkDetailSql = "SELECT parkName, state, acreage, elevationInFeet, milesOfTrail, numberOfCampsites, climate, yearFounded, annualVisitorCount, inspirationalQuote, inspirationalQuoteSource, parkDescription, entryFee, numberOfAnimalSpecies FROM park";
 
