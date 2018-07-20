@@ -1,4 +1,4 @@
-﻿@model List<Park>
+﻿@model Park
 @using Capstone.Web.Models;
 @{
     ViewBag.Title = "Park Detail";
@@ -13,52 +13,54 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            ParkName
-        </th>
-        <th>
-            State
-        </th>
-        <th>
-            Acreage
-        </th>
-        <th>
-            Elevation In Feet
-        </th>
-        <th>
-            Miles Of Trail)
-        </th>
-        <th>
-            Number Of Campsites
-        </th>
-        <th>
-            Climate
-        </th>
-        <th>
-            YearFounded
-        </th>
-        <th>
-            Annual Visitor Count
-        </th>
-        <th>
-            Inspirational Quote
-        </th>
-        <th>
-            Inspirational Quote Source
-        </th>
-        <th>
-            Park Description
-        </th>
-        <th>
-            Entry Fee
-        </th>
-        <th>
-            Number Of Animal Species
-        </th>
-        <th>5-Day Forecast</th>
+        <td>
+           Park: @Model.ParkName
+        </td>
+        <td>
+           State: @Model.State
+        </td>
+        <td>
+           Acreage: @Model.Acreage
+        </td>
+        <td>
+           Elevation In Feet: @Model.ElevationInFeet
+        </td>
+        <td>
+           Trail Length: @Model.MilesOfTrail miles
+        </td>
+        <td>
+           Total Campsites: @Model.NumberOfCampsites
+        </td>
+        <td>
+           Climate: @Model.Climate
+        </td>
+        <td>
+           Year Founded: @Model.YearFounded
+        </td>
+        <td>
+           Annual Visitors: @Model.AnnualVisitorCount
+        </td>
+        <td>
+           Inspiration Quote: @Model.InspirationalQuote
+        </td>
+        <td>
+           Quote Source: @Model.InspirationalQuoteSource
+        </td>
+        <td>
+           Summary: @Model.ParkDescription
+        </td>
+        <td>
+           Fee: @Model.EntryFee.ToString("C")
+        </td>
+        <td>
+           # of Animal @Model.NumberOfAnimalSpecies       
+        </td>
+        <td> 
+            @Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")
+        </td>
     </tr>
 
-    @foreach (var item in Model)
+    @*@foreach (var item in Model)
     {
         <tr>
 
@@ -109,6 +111,6 @@
                 @Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")
             </td>
         </tr>
-    }
+    }*@
 
 </table>
