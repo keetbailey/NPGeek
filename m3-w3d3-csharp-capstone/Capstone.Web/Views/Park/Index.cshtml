@@ -11,7 +11,7 @@
     @Html.ActionLink("ParkList", "Index", "Park")
 </p>
 <table class="table">
-    <tr>
+    @*<tr>
         <th>
             @Html.DisplayNameFor(model => model.ParkName)
         </th>
@@ -23,7 +23,7 @@
             @Html.DisplayNameFor(model => model.ParkDescription)
         </th>
         <th></th>
-    </tr>
+    </tr>*@
 
 @foreach (var item in Model) {
     <tr>
