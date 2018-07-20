@@ -12,6 +12,7 @@ namespace Capstone.Web.DAL
     {
         private readonly string connectionString;
         private const string sqlPark = "SELECT parkName, state, parkDescription FROM park";
+        private const string parkDetailSql = "SELECT parkName, state, acreage, elevationInFeet, milesOfTrail, numberOfCampsites, climate, yearFounded, annualVisitorCount, inspirationalQuote, inspirationalQuoteSource, parkDescription, entryFee, numberOfAnimalSpecies FROM park";
 
         public ParkSQLDAL(string connectionString)
         {
@@ -33,7 +34,11 @@ namespace Capstone.Web.DAL
                     {
                         Park park = new Park();
 
+<<<<<<< HEAD
                         park.ParkName = Convert.ToString(reader["parkName"]);  // move above while loop????
+=======
+                        park.ParkName = Convert.ToString(reader["parkName"]);
+>>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee
                         park.State = Convert.ToString(reader["state"]);
                         park.ParkDescription = Convert.ToString(reader["parkDescription"]);
 
@@ -48,6 +53,7 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
+<<<<<<< HEAD
     }
 }
 
@@ -55,3 +61,48 @@ namespace Capstone.Web.DAL
 
 
 
+=======
+        public List<Park> ParkDetail()
+        {
+            List<Park> parkDetail = new List<Park>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(parkDetailSql, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Park parkDetails = new Park();
+
+                        parkDetails.ParkName = Convert.ToString(reader["parkName"]);
+                        parkDetails.State = Convert.ToString(reader["state"]);
+                        parkDetails.Acreage = Convert.ToInt32(reader["acreage"]);
+                        parkDetails.ElevationInFeet = Convert.ToInt32(reader["elevationInFeet"]);
+                        parkDetails.MilesOfTrail = Convert.ToInt32(reader["milesOfTrail"]);
+                        parkDetails.NumberOfCampsites = Convert.ToInt32(reader["numberOfCampsites"]);
+                        parkDetails.Climate = Convert.ToString(reader["climate"]);
+                        parkDetails.YearFounded = Convert.ToInt32(reader["yearFounded"]);
+                        parkDetails.AnnualVisitorCount = Convert.ToInt32(reader["annualVisitorCount"]);
+                        parkDetails.InspirationalQuote = Convert.ToString(reader["inspirationalQuote"]);
+                        parkDetails.InspirationalQuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]);
+                        parkDetails.ParkDescription = Convert.ToString(reader["parkDescription"]);
+                        parkDetails.EntryFee = Convert.ToInt32(reader["entryFee"]);
+                        parkDetails.NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
+
+                        parkDetail.Add(parkDetails);
+                    }
+                }
+                return parkDetail;
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+    }
+}
+>>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee

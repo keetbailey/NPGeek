@@ -40,6 +40,7 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
+<<<<<<< HEAD
 
 
         public List<SurveyResult> GetSurveyResults()
@@ -80,3 +81,19 @@ namespace Capstone.Web.DAL
         }
     }
 }
+=======
+        //private Park MapRowToPark(SqlDataReader reader)  // possbly not necessary....
+
+        //{
+        //    return new Park()
+        //    {
+        //        ParkName = Convert.ToString(reader["parkName"]),
+        //        State = Convert.ToString(reader["state"]),
+        //        ParkDescription = Convert.ToString(reader["parkDescription"])
+        //    };
+
+        //}
+    }
+}
+
+>>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee
