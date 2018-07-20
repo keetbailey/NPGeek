@@ -11,8 +11,10 @@
 <p>
     @Html.ActionLink("Back To List", "Index")
 </p>
+
 <table class="table">
     <tr>
+<<<<<<< HEAD
         <td>
            Park: @Model.ParkName
         </td>
@@ -113,4 +115,54 @@
         </tr>
     }*@
 
+=======
+         @*<td>@Model.ParkCode</td>*@
+        <td>
+           <b>Park:</b> @Model.ParkName
+        </td>
+        <td>
+            <b>State:</b> @Model.State
+        </td>
+        <td>
+            <b>Acreage:</b> @Model.Acreage
+        </td>
+        <td>
+            <b> Elevation In Feet:</b> @Model.ElevationInFeet
+        </td>
+        <td>
+            <b>Trail Length:</b> @Model.MilesOfTrail miles
+        </td>
+        <td>
+            <b>Total Campsites:</b> @Model.NumberOfCampsites
+        </td>
+        <td>
+            <b>Climate:</b> @Model.Climate
+        </td>
+        <td>
+            <b>Year Founded:</b> @Model.YearFounded
+        </td>
+        <td>
+            <b>Annual Visitors:</b> @Model.AnnualVisitorCount
+        </td>
+        <td>
+            <b>Inspiration Quote:</b> @Model.InspirationalQuote
+        </td>
+        <td>
+            <b>Quote Source:</b> @Model.InspirationalQuoteSource
+        </td>
+        <td>
+            <b>Summary:</b> @Model.ParkDescription
+        </td>
+        <td>
+            <b>Fee:</b> @Model.EntryFee.ToString("C")
+        </td>
+        <td>
+            <b># of Animal Species</b> @Model.NumberOfAnimalSpecies
+        </td>
+        <td>
+            <b>@Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")</b>
+        </td>
+    </tr>
+
+>>>>>>> 2a69bad90bd81b12d968562c2f75f9681199ec5e
 </table>
