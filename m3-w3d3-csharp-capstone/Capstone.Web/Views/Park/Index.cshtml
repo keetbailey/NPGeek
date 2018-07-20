@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //var parkImage = "~etc/National Park Geek/img/parks" + Model.ParkImage; how to add image to utilize in for each loop, rather than creating new line of code for each image?
 }
 
 <h2>List of Parks</h2>
@@ -24,12 +23,11 @@
         <th></th>
     </tr>
 
-
-
     @foreach (var item in Model)
     {
+        var parkImage = "/Content/Images/" + item.ParkCode.ToLower() + ".jpg";
         <tr>
-            <td> </td>
+            <td> <img src=@parkImage  /> </td>
             <td>
                 <a href="@Url.Action("ParkDetail", "Park", new { id = item.ParkCode })">
                     @Html.DisplayFor(modelItem => item.ParkName)
@@ -43,11 +41,6 @@
                 @Html.DisplayFor(modelItem => item.ParkDescription)
             </td>
             <td></td>
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>*@
         </tr>
     }
 </table>
