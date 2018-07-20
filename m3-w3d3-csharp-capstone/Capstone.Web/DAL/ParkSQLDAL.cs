@@ -1,6 +1,7 @@
 ﻿using Capstone.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
@@ -9,7 +10,7 @@ namespace Capstone.Web.DAL
 {
     public class ParkSQLDAL : IParkSqlDAL
     {
-        private readonly string connectionString;
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekDatabase"].ConnectionString;
         private const string sqlPark = "SELECT parkName, state, parkDescription FROM park";
 
         public ParkSQLDAL(string connectionString)
