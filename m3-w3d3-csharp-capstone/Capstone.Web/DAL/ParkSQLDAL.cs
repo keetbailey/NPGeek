@@ -34,14 +34,9 @@ namespace Capstone.Web.DAL
                     {
                         Park park = new Park();
 
-<<<<<<< HEAD
-                        park.ParkName = Convert.ToString(reader["parkName"]);  // move above while loop????
-=======
-                        park.ParkName = Convert.ToString(reader["parkName"]);
->>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee
+                        park.ParkName = Convert.ToString(reader["parkName"]);  
                         park.State = Convert.ToString(reader["state"]);
                         park.ParkDescription = Convert.ToString(reader["parkDescription"]);
-
 
                         parks.Add(park);
                     }
@@ -53,15 +48,7 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
-<<<<<<< HEAD
-    }
-}
-
-
-
-
-
-=======
+     
         public List<Park> ParkDetail()
         {
             List<Park> parkDetail = new List<Park>();
@@ -105,4 +92,3 @@ namespace Capstone.Web.DAL
         }
     }
 }
->>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee

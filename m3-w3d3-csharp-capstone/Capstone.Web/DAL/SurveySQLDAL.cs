@@ -10,10 +10,10 @@ namespace Capstone.Web.DAL
 {
     public class SurveySQLDAL
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekDatabase"].ConnectionString;
+        private readonly string connectionString;
         private const string sqlSurvey = "INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel)" + "VALUES (@parkCode, @emailAddress, @state, @activityLevel)";
         private const string sqlGetSurveyResults = "SELECT surveyId, parkCode, emailAddress, state, activityLevel FROM survey_result";
-
+        
         public SurveySQLDAL(string connectionString)
         {
             this.connectionString = connectionString;
@@ -40,8 +40,6 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
-<<<<<<< HEAD
-
 
         public List<SurveyResult> GetSurveyResults()
         {
@@ -81,19 +79,3 @@ namespace Capstone.Web.DAL
         }
     }
 }
-=======
-        //private Park MapRowToPark(SqlDataReader reader)  // possbly not necessary....
-
-        //{
-        //    return new Park()
-        //    {
-        //        ParkName = Convert.ToString(reader["parkName"]),
-        //        State = Convert.ToString(reader["state"]),
-        //        ParkDescription = Convert.ToString(reader["parkDescription"])
-        //    };
-
-        //}
-    }
-}
-
->>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee

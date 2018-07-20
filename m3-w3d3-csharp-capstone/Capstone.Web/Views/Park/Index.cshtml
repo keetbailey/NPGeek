@@ -10,12 +10,6 @@
 
 
 <table class="table">
-<<<<<<< HEAD
-    @*<tr>
-=======
-    <tr>
-        <th></th>
->>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee
         <th>
             Park Name
         </th>
@@ -26,15 +20,11 @@
             Description
         </th>
         <th></th>
-    </tr>*@
+    </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-<<<<<<< HEAD
-=======
-            <td> </td>
->>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee
             <td>
                 @Html.DisplayFor(modelItem => item.ParkName)
             </td>
@@ -46,17 +36,6 @@
                 @Html.DisplayFor(modelItem => item.ParkDescription)
             </td>
             <td></td>
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>*@
         </tr>
     }
 </table>
-<<<<<<< HEAD
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-=======
->>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee

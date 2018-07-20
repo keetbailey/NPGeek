@@ -13,19 +13,39 @@ namespace Capstone.Web.DAL
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekDatabase"].ConnectionString;
         private const string SqlGetWeather = "SELECT parkCode, fiveDayForecastValue, low, high, forecast FROM weather";
 
-
-        private Weather GetWeather(SqlDataReader reader)
+        public List<Weather> GetWeather()
         {
-            return new Weather()
+            List<Weather> WeatherResults = new List<Weather>();
+
+            try
             {
-                ParkCode = Convert.ToString(reader["parkCode"]),
-                FiveDayForecastValue= Convert.ToString(reader["fiveDayForecastValue"]),
-                Low = Convert.ToString(reader["low"]),
-                High = Convert.ToString(reader["high"]),
-                Forecast = Convert.ToString(reader["forecast"])
-            };
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
 
+                    SqlCommand cmd = new SqlCommand(SqlGetWeather);
+                    cmd.Connection = conn;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    
+                    while (reader.Read())
+                    {
+                        Weather weather = new Weather();
+                        weather.ParkCode = Convert.ToString(reader["parCode"]);
+                        weather.FiveDayForecastValue = Convert.ToInt32(reader["fiveDayForecastValue"]);
+                        weather.Low = Convert.ToInt32(reader["low"]);
+                        weather.High = Convert.ToInt32(reader["high"]);
+                        weather.Forecast = Convert.ToString(reader["forecast"]);
+
+                        WeatherResults.Add(weather);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return WeatherResults;
         }
-
     }
 }

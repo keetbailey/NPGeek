@@ -13,12 +13,7 @@ namespace Capstone.Web.Controllers
     public class ParkController : Controller
     {
         private readonly IParkSqlDAL parkDAL;
-<<<<<<< HEAD
 
-        public ParkController()
-        {
-            parkDAL = new ParkSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
-=======
         private readonly ParkSQLDAL parkDetail;
 
         public ParkController()
@@ -26,7 +21,6 @@ namespace Capstone.Web.Controllers
             parkDAL = new ParkSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
 
             parkDetail = new ParkSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
->>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee
         }
 
         // GET: Home
@@ -35,8 +29,6 @@ namespace Capstone.Web.Controllers
             IList<Park> allParks = parkDAL.GetAllParks();
 
             return View("Index", allParks);
-<<<<<<< HEAD
-=======
         }
 
         public ActionResult ParkDetail()
@@ -44,7 +36,6 @@ namespace Capstone.Web.Controllers
             List<Park> parkDetails = parkDetail.ParkDetail();
 
             return View("ParkDetail", parkDetails);
->>>>>>> d3c6fd159c2058333a8bc630d3861e9e9aaae2ee
         }
 
     }
