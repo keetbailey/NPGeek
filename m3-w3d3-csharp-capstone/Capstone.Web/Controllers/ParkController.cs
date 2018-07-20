@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Capstone.Web.DAL;
 using Capstone.Web.Models;
-//using Capstone.Web.DAL.Interfaces; 
+
 
 namespace Capstone.Web.Controllers
 {
     public class ParkController : Controller
     {
-        //private IParkSqlDAL;
+        private readonly IParkSqlDAL parkDAL;
 
-        //public ParkController(IParkSqlDAL dal)
-        //{
-        //    this.dal = dal;
-        //}
-
+        public ParkController()
+        {
+            parkDAL = new ParkSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
+        }
 
         // GET: Home
         public ActionResult Index()
         {
-            return View("Index");
+            IList<Park> allParks = parkDAL.GetAllParks();
+
+            return View("Index", allParks);
         }
 
     }
