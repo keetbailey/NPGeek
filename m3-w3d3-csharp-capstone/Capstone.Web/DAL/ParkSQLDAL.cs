@@ -10,7 +10,7 @@ namespace Capstone.Web.DAL
 {
     public class ParkSQLDAL : IParkSqlDAL
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekDatabase"].ConnectionString;
+        private readonly string connectionString;
         private const string sqlPark = "SELECT parkName, state, parkDescription FROM park";
 
         public ParkSQLDAL(string connectionString)
@@ -32,12 +32,12 @@ namespace Capstone.Web.DAL
                     while (reader.Read())
                     {
                         Park park = new Park();
-                        {
-                            park.ParkName = Convert.ToString(reader["parkName"]);  // move above while loop????
-                            park.State = Convert.ToString(reader["state"]);
-                            park.ParkDescription = Convert.ToString(reader["parkDescription"]);
 
-                        }
+                        park.ParkName = Convert.ToString(reader["parkName"]);  // move above while loop????
+                        park.State = Convert.ToString(reader["state"]);
+                        park.ParkDescription = Convert.ToString(reader["parkDescription"]);
+
+
                         parks.Add(park);
                     }
                 }
@@ -48,21 +48,8 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
-
-        private Park MapRowToPark(SqlDataReader reader)  // possbly not necessary....
-
-        {
-            return new Park()
-            {
-                ParkName = Convert.ToString(reader["parkName"]),
-                State = Convert.ToString(reader["state"]),
-                ParkDescription = Convert.ToString(reader["parkDescription"])
-            };
-
-        }
     }
 }
-
 
 
 

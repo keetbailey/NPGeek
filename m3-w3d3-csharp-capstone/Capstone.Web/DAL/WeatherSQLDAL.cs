@@ -13,5 +13,19 @@ namespace Capstone.Web.DAL
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekDatabase"].ConnectionString;
         private const string SqlGetWeather = "SELECT parkCode, fiveDayForecastValue, low, high, forecast FROM weather";
 
+
+        private Weather GetWeather(SqlDataReader reader)
+        {
+            return new Weather()
+            {
+                ParkCode = Convert.ToString(reader["parkCode"]),
+                FiveDayForecastValue= Convert.ToString(reader["fiveDayForecastValue"]),
+                Low = Convert.ToString(reader["low"]),
+                High = Convert.ToString(reader["high"]),
+                Forecast = Convert.ToString(reader["forecast"])
+            };
+
+        }
+
     }
 }
