@@ -13,13 +13,12 @@ namespace Capstone.Web.Controllers
     public class ParkController : Controller
     {
         private readonly IParkSqlDAL parkDAL;
-        private readonly ParkSQLDAL parkDetail;
+       
 
         public ParkController()
         {
             parkDAL = new ParkSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
 
-            parkDetail = new ParkSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
         }
 
         // GET: Home
@@ -30,12 +29,15 @@ namespace Capstone.Web.Controllers
             return View("Index", allParks);
         }
 
-        public ActionResult ParkDetail()
+        public ActionResult ParkDetail(string id)   
         {
-            List<Park> parkDetails = parkDetail.ParkDetail();
+            //create new park instance 
+            Park newPark = parkDAL.ParkDetail(id);
 
-            return View("ParkDetail", parkDetails);
+            //assign park from database to new park 
+            //return the View with actionresult method and new park instance 
+
+            return View("ParkDetail", newPark);
         }
-
     }
 }

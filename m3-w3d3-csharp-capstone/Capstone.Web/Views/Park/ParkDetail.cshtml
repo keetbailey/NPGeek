@@ -11,106 +11,55 @@
 <p>
     @Html.ActionLink("Back To List", "Index")
 </p>
+
 <table class="table">
     <tr>
+         @*<td>@Model.ParkCode</td>*@
         <td>
-           Park: @Model.ParkName
+           <b>Park:</b> @Model.ParkName
         </td>
         <td>
-           State: @Model.State
+            <b>State:</b> @Model.State
         </td>
         <td>
-           Acreage: @Model.Acreage
+            <b>Acreage:</b> @Model.Acreage
         </td>
         <td>
-           Elevation In Feet: @Model.ElevationInFeet
+            <b> Elevation In Feet:</b> @Model.ElevationInFeet
         </td>
         <td>
-           Trail Length: @Model.MilesOfTrail miles
+            <b>Trail Length:</b> @Model.MilesOfTrail miles
         </td>
         <td>
-           Total Campsites: @Model.NumberOfCampsites
+            <b>Total Campsites:</b> @Model.NumberOfCampsites
         </td>
         <td>
-           Climate: @Model.Climate
+            <b>Climate:</b> @Model.Climate
         </td>
         <td>
-           Year Founded: @Model.YearFounded
+            <b>Year Founded:</b> @Model.YearFounded
         </td>
         <td>
-           Annual Visitors: @Model.AnnualVisitorCount
+            <b>Annual Visitors:</b> @Model.AnnualVisitorCount
         </td>
         <td>
-           Inspiration Quote: @Model.InspirationalQuote
+            <b>Inspiration Quote:</b> @Model.InspirationalQuote
         </td>
         <td>
-           Quote Source: @Model.InspirationalQuoteSource
+            <b>Quote Source:</b> @Model.InspirationalQuoteSource
         </td>
         <td>
-           Summary: @Model.ParkDescription
+            <b>Summary:</b> @Model.ParkDescription
         </td>
         <td>
-           Fee: @Model.EntryFee.ToString("C")
+            <b>Fee:</b> @Model.EntryFee.ToString("C")
         </td>
         <td>
-           # of Animal @Model.NumberOfAnimalSpecies       
+            <b># of Animal Species</b> @Model.NumberOfAnimalSpecies
         </td>
-        <td> 
-            @Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")
+        <td>
+            <b>@Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")</b>
         </td>
     </tr>
-
-    @*@foreach (var item in Model)
-    {
-        <tr>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.ParkName)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Acreage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ElevationInFeet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MilesOfTrail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfCampsites)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Climate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YearFounded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnnualVisitorCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InspirationalQuote)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InspirationalQuoteSource)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParkDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EntryFee)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfAnimalSpecies)
-            </td>
-            <td>
-                @Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")
-            </td>
-        </tr>
-    }*@
 
 </table>

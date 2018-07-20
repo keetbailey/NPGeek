@@ -7,7 +7,7 @@ namespace Capstone.Web.Models
 {
     public class Park
     {
-        public string ParkCode { get; } // <---- Primary Key
+        public string ParkCode { get; set; } // <---- Primary Key
         public string ParkName { get; set;}
         public string State {get; set;}
         public int Acreage {get; set;}

@@ -11,8 +11,8 @@ namespace Capstone.Web.DAL
     public class ParkSQLDAL : IParkSqlDAL
     {
         private readonly string connectionString;
-        private const string sqlPark = "SELECT parkName, state, parkDescription FROM park";
-        private const string parkDetailSql = "SELECT parkName, state, acreage, elevationInFeet, milesOfTrail, numberOfCampsites, climate, yearFounded, annualVisitorCount, inspirationalQuote, inspirationalQuoteSource, parkDescription, entryFee, numberOfAnimalSpecies FROM park";
+        private const string sqlPark = "SELECT * FROM park";
+        private const string parkDetailSql = "SELECT * from park WHERE parkCode = @parkCode";
 
         public ParkSQLDAL(string connectionString)
         {
@@ -32,12 +32,7 @@ namespace Capstone.Web.DAL
 
                     while (reader.Read())
                     {
-                        Park park = new Park();
-
-                        park.ParkName = Convert.ToString(reader["parkName"]);
-                        park.State = Convert.ToString(reader["state"]);
-                        park.ParkDescription = Convert.ToString(reader["parkDescription"]);
-
+                        Park park = MapRowToPark(reader);
 
                         parks.Add(park);
                     }
@@ -49,9 +44,9 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
-        public List<Park> ParkDetail()
+        public Park ParkDetail(string parkCode)
         {
-            List<Park> parkDetail = new List<Park>();
+            Park parkDetail = new Park();
 
             try
             {
@@ -59,36 +54,47 @@ namespace Capstone.Web.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(parkDetailSql, conn);
+                    cmd.Parameters.AddWithValue("@parkCode", parkCode); ///look into SQL profiler - lets you see behind the scenes - will trace the session to show you all queries running against your database 
+
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        Park parkDetails = new Park();
+                        parkDetail = MapRowToPark(reader);
 
-                        parkDetails.ParkName = Convert.ToString(reader["parkName"]);
-                        parkDetails.State = Convert.ToString(reader["state"]);
-                        parkDetails.Acreage = Convert.ToInt32(reader["acreage"]);
-                        parkDetails.ElevationInFeet = Convert.ToInt32(reader["elevationInFeet"]);
-                        parkDetails.MilesOfTrail = Convert.ToInt32(reader["milesOfTrail"]);
-                        parkDetails.NumberOfCampsites = Convert.ToInt32(reader["numberOfCampsites"]);
-                        parkDetails.Climate = Convert.ToString(reader["climate"]);
-                        parkDetails.YearFounded = Convert.ToInt32(reader["yearFounded"]);
-                        parkDetails.AnnualVisitorCount = Convert.ToInt32(reader["annualVisitorCount"]);
-                        parkDetails.InspirationalQuote = Convert.ToString(reader["inspirationalQuote"]);
-                        parkDetails.InspirationalQuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]);
-                        parkDetails.ParkDescription = Convert.ToString(reader["parkDescription"]);
-                        parkDetails.EntryFee = Convert.ToInt32(reader["entryFee"]);
-                        parkDetails.NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
-
-                        parkDetail.Add(parkDetails);
                     }
                 }
-                return parkDetail;
             }
             catch (SqlException ex)
             {
                 throw;
             }
+            return parkDetail;
+        }
+
+        private Park MapRowToPark(SqlDataReader reader)
+
+        {
+            return new Park()
+            {
+                ParkCode = Convert.ToString(reader["parkCode"]),
+                ParkName = Convert.ToString(reader["parkName"]),
+                State = Convert.ToString(reader["state"]),
+                Acreage = Convert.ToInt32(reader["acreage"]),
+                ElevationInFeet = Convert.ToInt32(reader["elevationInFeet"]),
+                MilesOfTrail = Convert.ToInt32(reader["milesOfTrail"]),
+                NumberOfCampsites = Convert.ToInt32(reader["numberOfCampsites"]),
+                Climate = Convert.ToString(reader["climate"]),
+                YearFounded = Convert.ToInt32(reader["yearFounded"]),
+                AnnualVisitorCount = Convert.ToInt32(reader["annualVisitorCount"]),
+                InspirationalQuote = Convert.ToString(reader["inspirationalQuote"]),
+                InspirationalQuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]),
+                ParkDescription = Convert.ToString(reader["parkDescription"]),
+                EntryFee = Convert.ToInt32(reader["entryFee"]),
+                NumberOfAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"])
+                
+            };
+
         }
     }
 }
