@@ -48,7 +48,9 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
+
         private Park MapRowToPark(SqlDataReader reader)  // possbly not necessary....
+
         {
             return new Park()
             {
