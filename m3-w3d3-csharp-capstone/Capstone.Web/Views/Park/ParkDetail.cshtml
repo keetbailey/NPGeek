@@ -1,117 +1,114 @@
-﻿@model IEnumerable<Capstone.Web.Models.Park>
-
+﻿@model List<Park>
+@using Capstone.Web.Models;
 @{
-    ViewBag.Title = "ParkDetail";
+    ViewBag.Title = "Park Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var parkImage = "~etc/National Park Geek/img/parks" + Model.ParkImage; how to add image to utilize in for each loop, rather than creating new line of code for each image?
 }
 
-<h2>ParkDetail</h2>
+<h2>Park Detail</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Back To List", "Index")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ParkCode)
+            ParkName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ParkName)
+            State
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.State)
+            Acreage
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Acreage)
+            Elevation In Feet
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ElevationInFeet)
+            Miles Of Trail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MilesOfTrail)
+            Number Of Campsites
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumberOfCampsites)
+            Climate
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Climate)
+            YearFounded
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.YearFounded)
+            Annual Visitor Count
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AnnualVisitorCount)
+            Inspirational Quote
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InspirationalQuote)
+            Inspirational Quote Source
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InspirationalQuoteSource)
+            Park Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ParkDescription)
+            Entry Fee
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EntryFee)
+            Number Of Animal Species
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfAnimalSpecies)
-        </th>
-        <th></th>
+        <th>5-Day Forecast</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParkCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParkName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Acreage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ElevationInFeet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MilesOfTrail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfCampsites)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Climate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearFounded)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnnualVisitorCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InspirationalQuote)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InspirationalQuoteSource)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParkDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EntryFee)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfAnimalSpecies)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acreage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElevationInFeet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MilesOfTrail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfCampsites)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Climate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearFounded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnnualVisitorCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspirationalQuote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspirationalQuoteSource)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryFee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfAnimalSpecies)
+            </td>
+            <td>
+                @Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")
+            </td>
+        </tr>
+    }
 
 </table>
