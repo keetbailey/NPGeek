@@ -4,12 +4,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>List of Parks</h2>
-
+<br />
+<br />
+<h2 style="text-align:center">
+    US National Parks
+</h2>
 
 <table class="table">
     <tr>
+        <th style="font-size:10px">Click image or name for details!</th>
         <th>
             Park Name
         </th>
@@ -29,7 +32,7 @@
         var parkImage = "/Content/Images/" + item.ParkCode.ToLower() + ".jpg";
         <tr>
 
-            <td> <img src=@parkImage  /> </td>
+            <td> <a href="@Url.Action("ParkDetail", "Park", new { id = item.ParkCode })"><img style="max-height:250px; max-width:250px" src=@parkImage /></a> </td>
 
             <td>
                 <a href="@Url.Action("ParkDetail", "Park", new { id = item.ParkCode })">

@@ -1,0 +1,63 @@
+
+Models 
+
+Park Model
+Survey Model
+Weather Model
+
+DAL
+
+ParkSqlDAL 
+SurveySqlDAL --> Sql statement to insert completed user survey (look for Squirrel Party or FlyByNightBank as reference) 
+WeatherSqlDAL --> possible SQL statement SELECT * FROM Weather WHERE parkCode = @parkCode (in SQL use  SELECT * FROM Weather WHERE parkCode = ' '   [ <-- insert actual parkCode as single quotation string to view]
+
+Views
+Park --> Index --> Image, name, location, summary 
+	 --> Detail --> All details from Park table 
+Survey --> Index --> survey form: park choice, rating, E-mail address, state of residence, and physical activity level (inactive, sedentary, active, extremely active
+	   --> Confirmation --> "Survey received!" 
+	   
+Weather --> Weather(Index) 
+
+Controllers 
+
+ParkController - DONE 7/20/18
+SurveyController (survey will need to be added {HTTP Post} then, REDIRECT user to all reviews) - >50% complete 
+WeatherController -- needs work as of 7/21/18
+
+Unit Tests 
+ParkController
+SurveyController -- needs added as of 7/21/18
+WeatherController -- needs added as of 7/21/18
+
+Needs as of Saturday AM (7/21/18) 
+
+Decide where weather forecast is placed - link to forecast page or add a table below the park detail for each park?
+Ensure weather forecast includes images with weather preparation details based on weather provided in forcast
+Weather calculations (F to C and inverse) to be created - weather index to be built and implemented possibly in Park Detail screen for park or on it's own page (TBD) 
+Once survey is completed, should go to confirmation, then redirect to survey results where it lists most popular park reviews first to last. 
+Survey will need ranking drop down (1-5?) 5 being highest? then we'll have to build SQL statement (likely within surveySQLDAL) to product survey results list ORDERED BY Rank. Rank may have to be inserted as new table column as well. 
+Decide where the F and C option goes and then work on creating session to remember throughout navigation. Possibly linking that on forcast and giving C or F option on drop down and putting that in session? 
+Unit Test for each controller
+ 
+>50% Completed 
+
+User can participate in daily survey, but Survey Controller will need [HTTP Post] and survey results must be able to added to SQL server to pull for redirect and confirmation
+Nav links on index pages to survey and survey results - survey nav link DONE - wouldn't be bad idea to add one for survey results once ActionResult is built in SurveyController
+
+Completed
+
+User can view list of parks on home page - only showing picture of park, park name, location and summary - DONE 7/20/18
+User can select park from list to obtain details - all park data source needs to be displayed - DONE 7/20/18 (however, Forecast may be added) 
+Need images next to park name for both Park Index view and Park Detail view - DONE 7/20/18
+Need to be able to select park name from Park Index view to list specific Park Detail view for that park - DONE 
+(Optional) stylesheet formatting - added NPGeek Logo, some borders, spacing and re-aligned nav links - DONE 7/20/18 (however this is pending partner suggestions/approval - site is at least moderately aestetically pleasing at this point)\
+User can enter in email addy, state and physical activity level in survey - DONE 7/20/18 
+
+
+
+
+
+
+
+

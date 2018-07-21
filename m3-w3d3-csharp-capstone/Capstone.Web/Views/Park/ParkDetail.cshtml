@@ -3,63 +3,65 @@
 @{
     ViewBag.Title = "Park Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //var parkImage = "~etc/National Park Geek/img/parks" + Model.ParkImage; how to add image to utilize in for each loop, rather than creating new line of code for each image?
+    var parkImage = "/Content/Images/" + Model.ParkCode.ToLower() + ".jpg";
 }
+<br />
+<br />
 
-<h2>Park Detail</h2>
-
+<h2 style="font-size:x-large">
+    @Model.ParkName <img style="float:right;" src=@parkImage />
+</h2>
+<br />
+<br />
+<br />
+<br />
+<br />
 <p>
-    @Html.ActionLink("Back To List", "Index")
+    @Model.ParkDescription
 </p>
-
 <table class="table">
     <tr>
-
         <td>
-           <b>Park:</b> @Model.ParkName
+            <b><u>State</u></b> @Model.State
         </td>
         <td>
-            <b>State:</b> @Model.State
+            <b><u>Acreage</u></b> @Model.Acreage
         </td>
         <td>
-            <b>Acreage:</b> @Model.Acreage
+            <b><u>Elevation (in ft)</u></b> @Model.ElevationInFeet
         </td>
         <td>
-            <b> Elevation In Feet:</b> @Model.ElevationInFeet
+            <b><u>Trail Length (in miles)</u></b> @Model.MilesOfTrail 
         </td>
         <td>
-            <b>Trail Length:</b> @Model.MilesOfTrail miles
+            <b><u>Campsites</u></b> @Model.NumberOfCampsites
         </td>
         <td>
-            <b>Total Campsites:</b> @Model.NumberOfCampsites
+            <b><u>Climate</u></b> @Model.Climate
         </td>
         <td>
-            <b>Climate:</b> @Model.Climate
+            <b><u>Founded In</u></b> @Model.YearFounded
         </td>
         <td>
-            <b>Year Founded:</b> @Model.YearFounded
+            <b><u>Annual Visitors</u></b> @Model.AnnualVisitorCount
         </td>
         <td>
-            <b>Annual Visitors:</b> @Model.AnnualVisitorCount
+            <b><u>Fee</u></b> @Model.EntryFee.ToString("C")
         </td>
         <td>
-            <b>Inspiration Quote:</b> @Model.InspirationalQuote
+            <b><u>Animal Species</u></b> @Model.NumberOfAnimalSpecies
         </td>
+        @*<td>
+                <b>@Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")</b>
+            </td>*@
+    </tr>
+</table>
+<table class="table">
+    <tr>
         <td>
-            <b>Quote Source:</b> @Model.InspirationalQuoteSource
-        </td>
-        <td>
-            <b>Summary:</b> @Model.ParkDescription
-        </td>
-        <td>
-            <b>Fee:</b> @Model.EntryFee.ToString("C")
-        </td>
-        <td>
-            <b># of Animal Species</b> @Model.NumberOfAnimalSpecies
-        </td>
-        <td>
-            <b>@Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")</b>
+            <b>Inspirational Quote |</b> @Model.InspirationalQuote
+            <b>- @Model.InspirationalQuoteSource</b>
         </td>
     </tr>
-
 </table>
+<p> @Html.ActionLink("Back To NPGeek Park List", "Index")</p>
