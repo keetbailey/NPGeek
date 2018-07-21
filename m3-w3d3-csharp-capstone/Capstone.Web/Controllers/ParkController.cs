@@ -21,22 +21,22 @@ namespace Capstone.Web.Controllers
         }
 
         // GET: Home
-        public ActionResult Index()
-        {
-            IList<Park> allParks = parkDAL.GetAllParks();
+            public ActionResult Index()
+            {
+                IList<Park> allParks = parkDAL.GetAllParks();
 
-            return View("Index", allParks);
-        }
+                return View("Index", allParks);
+            }
 
-        public ActionResult ParkDetail(string id)   
-        {
-            //create new park instance 
-            Park newPark = parkDAL.ParkDetail(id);
+            public ActionResult ParkDetail(string id)   
+            {
+                //create new park instance 
+                Park newPark = parkDAL.ParkDetail(id);
 
-            //assign park from database to new park 
-            //return the View with actionresult method and new park instance 
+                //assign park from database to new park 
+                //return the View with actionresult method and new park instance 
 
-            return View("ParkDetail", newPark);
-        }
+                return View("ParkDetail", newPark);
+            }
     }
 }
