@@ -10,13 +10,12 @@ namespace Capstone.Web.DAL
 {
     public class SurveySQLDAL
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekDatabase"].ConnectionString;
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString;
         private const string sqlSurvey = "INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel)" + "VALUES (@parkCode, @emailAddress, @state, @activityLevel)";
         private const string sqlGetSurveyResults = "SELECT surveyId, parkCode, emailAddress, state, activityLevel FROM survey_result";
-
-        public SurveySQLDAL(string connectionString)
+        
+        public SurveySQLDAL()
         {
-            this.connectionString = connectionString;
         }
         public void CreateSurvey(SurveyResult survey)
         {
@@ -40,17 +39,42 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
-        //private Park MapRowToPark(SqlDataReader reader)  // possbly not necessary....
 
-        //{
-        //    return new Park()
-        //    {
-        //        ParkName = Convert.ToString(reader["parkName"]),
-        //        State = Convert.ToString(reader["state"]),
-        //        ParkDescription = Convert.ToString(reader["parkDescription"])
-        //    };
+        public List<SurveyResult> GetSurveyResults()
+        {
+            List<SurveyResult> surveys = new List<SurveyResult>();
 
-        //}
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlGetSurveyResults);
+                    cmd.Connection = conn;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        SurveyResult survey = new SurveyResult();
+                        survey.SurveyID = Convert.ToInt32(reader["surveyId"]);
+                        survey.ParkCode = Convert.ToString(reader["parkCode"]);
+                        survey.EmailAddress = Convert.ToString(reader["emailAddress"]);
+                        survey.State = Convert.ToString(reader["state"]);
+                        survey.ActivityLevel = Convert.ToString(reader["activityLevel"]);
+
+                        surveys.Add(survey);
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            return surveys;
+        }
     }
 }
-

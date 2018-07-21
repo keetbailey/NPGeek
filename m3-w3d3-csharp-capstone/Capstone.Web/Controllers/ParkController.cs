@@ -13,7 +13,6 @@ namespace Capstone.Web.Controllers
     public class ParkController : Controller
     {
         private readonly IParkSqlDAL parkDAL;
-       
 
         public ParkController()
         {

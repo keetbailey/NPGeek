@@ -10,9 +10,11 @@ namespace Capstone.Web.DAL
 {
     public class ParkSQLDAL : IParkSqlDAL
     {
+
         private readonly string connectionString;
         private const string sqlPark = "SELECT * FROM park";
         private const string parkDetailSql = "SELECT * from park WHERE parkCode = @parkCode";
+
 
         public ParkSQLDAL(string connectionString)
         {
@@ -32,7 +34,9 @@ namespace Capstone.Web.DAL
 
                     while (reader.Read())
                     {
+
                         Park park = MapRowToPark(reader);
+
 
                         parks.Add(park);
                     }
@@ -44,7 +48,9 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
+
         public Park ParkDetail(string parkCode)
+
         {
             Park parkDetail = new Park();
 

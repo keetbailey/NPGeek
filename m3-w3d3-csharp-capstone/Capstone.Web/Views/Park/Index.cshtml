@@ -10,7 +10,6 @@
 
 <table class="table">
     <tr>
-        <th></th>
         <th>
             Park Name
         </th>
@@ -23,13 +22,18 @@
         <th></th>
     </tr>
 
+
+
     @foreach (var item in Model)
     {
         var parkImage = "/Content/Images/" + item.ParkCode.ToLower() + ".jpg";
         <tr>
-            <td> <a href="@Url.Action("ParkDetail", "Park", new { id = item.ParkCode })"> <img src=@parkImage  />  </a></td>
+
+            <td> <img src=@parkImage  /> </td>
+
             <td>
                 <a href="@Url.Action("ParkDetail", "Park", new { id = item.ParkCode })">
+
                     @Html.DisplayFor(modelItem => item.ParkName)
                 </a>
             </td>

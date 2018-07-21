@@ -7,12 +7,16 @@ namespace Capstone.Web.Models
 {
     public class Weather
     {
-        public string ParkCode {get; set; }
-        public int FiveDayForecastValue {get; set; }
-        public int Low {get; set; }
-        public int High {get; set; }
-        public string Forecast {get; set; }
-        public int CtoF {get; set;}
-        public int FtoC {get; set;}
+        public string ParkCode {get; set;}
+        public int FiveDayForecastValue {get; set;}
+        public int Low {get; set;}
+        public int High {get; set;}
+        public string Forecast {get; set;}
+        public int CelsiusToFarenheit {get; set;}
+        public int FarenheitToCelsius {get; set;}
+
+        
+
     }
+
 }

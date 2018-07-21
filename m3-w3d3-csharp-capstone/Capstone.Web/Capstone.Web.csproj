@@ -176,10 +176,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Park\ParkDetail.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Survey\Index.cshtml" />
     <Content Include="Views\Survey\Confirmation.cshtml" />
     <Content Include="Views\Weather\Weather.cshtml" />
     <Content Include="Views\Park\Index.cshtml" />
+    <Content Include="Views\Survey\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
