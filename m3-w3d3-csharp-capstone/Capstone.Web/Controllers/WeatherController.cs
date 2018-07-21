@@ -11,20 +11,20 @@ using Capstone.Web.DAL;
 
 namespace Capstone.Web.Controllers
 {
-    public class WeatherController : Controller
-    {
-        public WeatherController()
-        {
-            WeatherDAL = new WeatherSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
-        }
+    //public class WeatherController : Controller
+    //{
+    //    public WeatherController()
+    //    {
+    //        WeatherDAL = new WeatherSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
+    //    }
         
         
-        // GET: Weather
-        public ActionResult Index()
-        {
-            List<Weather> FiveDayWeather = WeatherDAL ();
+    //    // GET: Weather
+    //    public ActionResult Index()
+    //    {
+    //        List<Weather> FiveDayWeather = WeatherDAL ();
 
-            return View("Index", );
+    //        return View("Index", );
         }
 
 
@@ -35,5 +35,4 @@ namespace Capstone.Web.Controllers
 
 
 
-    }
-}
+    

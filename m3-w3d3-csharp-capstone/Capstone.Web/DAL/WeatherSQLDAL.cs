@@ -8,8 +8,9 @@ using System.Data.SqlClient;
 
 namespace Capstone.Web.DAL
 {
-    public class WeatherSQLDAL : IWeatherSqlDAL
-    {
+    public class WeatherSQLDAL 
+
+     {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString;
         private const string SqlGetWeather = "SELECT parkCode, fiveDayForecastValue, low, high, forecast FROM weather";
 
