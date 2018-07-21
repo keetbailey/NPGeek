@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,16 +11,30 @@ namespace Capstone.Web.Controllers
 {
     public class SurveyController : Controller
     {
-        private readonly SurveySQLDAL surveyDAL;
+        private ISurveySqlDAL surveyDAL;
 
         public SurveyController()
         {
-            surveyDAL = new SurveySQLDAL();
+            surveyDAL = new SurveySQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
         }
-        // GET: Survey
+        //GET: Survey
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
+        }
+        [HttpGet]
+        public ActionResult Confirmation()
+        {
+            IList<SurveyResult> surveyResult = surveyDAL.GetSurveyResults();
+
+            return View("Confirmation", surveyResult);
+        }
+        [HttpPost]
+        public ActionResult Index(SurveyResult createSurvey)
+        {
+            surveyDAL.CreateSurvey(createSurvey);
+
+            return RedirectToAction("Confirmation", "Survey");
         }
     }
 }

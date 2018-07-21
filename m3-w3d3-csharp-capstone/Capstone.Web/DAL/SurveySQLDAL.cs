@@ -8,16 +8,17 @@ using System.Data.SqlClient;
 
 namespace Capstone.Web.DAL
 {
-    public class SurveySQLDAL
+    public class SurveySQLDAL : ISurveySqlDAL
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString;
+        private readonly string connectionString;
         private const string sqlSurvey = "INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel)" + "VALUES (@parkCode, @emailAddress, @state, @activityLevel)";
-        private const string sqlGetSurveyResults = "SELECT surveyId, parkCode, emailAddress, state, activityLevel FROM survey_result";
-        
-        public SurveySQLDAL()
+        private const string sqlGetSurveyResults = "SELECT * FROM survey_result";
+
+        public SurveySQLDAL(string connectionString)
         {
+            this.connectionString = connectionString;
         }
-        public void CreateSurvey(SurveyResult survey)
+        public bool CreateSurvey(SurveyResult survey)
         {
             try
             {
@@ -31,7 +32,9 @@ namespace Capstone.Web.DAL
                     cmd.Parameters.AddWithValue("@state", survey.State);
                     cmd.Parameters.AddWithValue("@activityLevel", survey.ActivityLevel);
 
-                    cmd.ExecuteNonQuery();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected > 0;
                 }
             }
             catch (SqlException ex)
@@ -40,9 +43,9 @@ namespace Capstone.Web.DAL
             }
         }
 
-        public List<SurveyResult> GetSurveyResults()
+        public IList<SurveyResult> GetSurveyResults()
         {
-            List<SurveyResult> surveys = new List<SurveyResult>();
+            IList<SurveyResult> surveys = new List<SurveyResult>();
 
             try
             {
@@ -65,7 +68,9 @@ namespace Capstone.Web.DAL
                         survey.ActivityLevel = Convert.ToString(reader["activityLevel"]);
 
                         surveys.Add(survey);
+
                     }
+                    return surveys;
 
                 }
             }
@@ -74,7 +79,7 @@ namespace Capstone.Web.DAL
                 throw;
             }
 
-            return surveys;
         }
     }
 }
+

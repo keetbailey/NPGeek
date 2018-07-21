@@ -1,9 +1,35 @@
-﻿
+﻿@model IList<SurveyResult>
+@using Capstone.Web.Models;
 @{
     ViewBag.Title = "Confirmation";
 }
-
-<h2>Survey Received
+<br />
+<br />
+<br />
+<br />
+<h2>
+    Survey Received
     Thank you!
-    </h2>
+</h2>
+<table class="table">
+    <tr>
+        @*<th>Survey #</th>*@
+        <th>Park Code</th>
+        <th>User Email</th>
+        <th>State</th>
+        <th>Activity Level</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>@Html.DisplayFor(modelItem => item.SurveyID) </td>*@
+            <td>@Html.DisplayFor(modelItem => item.ParkCode)</td>
+            <td>@Html.DisplayFor(modelItem => item.EmailAddress)</td>
+            <td>@Html.DisplayFor(modelItem => item.State)</td>
+            <td>@Html.DisplayFor(modelItem => item.ActivityLevel)</td>
+        </tr>
+    }
+</table>
+
+
 
