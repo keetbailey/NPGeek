@@ -9,6 +9,8 @@
         Session["isFarenheit"] = true;
     }
     bool isFarenheit = (bool)Session["isFarenheit"];
+
+
 }
 
 <br />
@@ -50,26 +52,47 @@
                 @if(!isFarenheit)
                 {
                 @Html.DisplayFor(modelItem => item.CelsiusLow)
-                }
+                } 
                 else
                 {
                 @Html.DisplayFor(modelItem => item.Low)
-                }
+                } 
             </td>
 
             <td>
                 @if(!isFarenheit)
                 {
-                @Html.DisplayFor(modelItem => item.CelsiusHigh)
-                }
+                @Html.DisplayFor(modelItem => item.CelsiusHigh) 
+                } 
                 else
                 {
                 @Html.DisplayFor(modelItem => item.High)
-                }
+                } 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Forecast)
             </td>
+
+            <td>
+                @if (item.Forecast == "snow")
+                {
+                    <span>Don't forget snowshoes! </span>
+                }
+                else if(item.Forecast == "thunderstorms")
+                {
+                    <span>Seek shelter and avoid hiking on exposed ridges</span>
+                }
+                else if(item.Forecast == "rain")
+                {
+                    <span>Pack raingear and waterproof shoes!</span>
+                }
+                else if(item.Forecast == "sunny")
+                {
+                    <span>Bring sunblock!</span>
+                }
+            </td>
         </tr>
     }
 </table>
+
+<p> @Html.ActionLink("Back To NPGeek Park List", "Index")</p>

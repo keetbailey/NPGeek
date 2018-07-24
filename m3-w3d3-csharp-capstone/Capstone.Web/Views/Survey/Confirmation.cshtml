@@ -13,7 +13,6 @@
 </h2>
 <table class="table">
     <tr>
-        @*<th>Survey #</th>*@
         <th>Park Code</th>
         <th>User Email</th>
         <th>State</th>
@@ -22,7 +21,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            @*<td>@Html.DisplayFor(modelItem => item.SurveyID) </td>*@
             <td>@Html.DisplayFor(modelItem => item.ParkCode)</td>
             <td>@Html.DisplayFor(modelItem => item.EmailAddress)</td>
             <td>@Html.DisplayFor(modelItem => item.State)</td>
