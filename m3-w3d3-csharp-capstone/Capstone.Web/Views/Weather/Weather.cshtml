@@ -1,8 +1,10 @@
 ﻿@model IList<Weather>
 @using Capstone.Web.Models
 
+
 @{
     ViewBag.Title = "Weather";
+
 
     if (Session["isFarenheit"] == null)
     {
@@ -19,11 +21,14 @@
 
 <form action="/weather/changetemperaturescale" method="post">
     <input name="id" type="hidden" value=@Model[0].ParkCode>
-    <button>change temperature scale</button> 
+    <button>change temperature scale</button>
 </form>
 
 <table class="table">
     <tr>
+        <th>
+            Park Code
+        </th>
         <th>
             Day
         </th>
@@ -36,7 +41,7 @@
         <th>
             Forecast
         </th>
-        <th></th>
+        <th>Forecast Recommendation</th>
     </tr>
 
 
@@ -44,31 +49,75 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FiveDayForecastValue)
+                @Html.DisplayFor(modelItem => item.ParkCode)
             </td>
             <td>
-                @if(!isFarenheit)
+                @Html.DisplayFor(modelItem => item.FiveDayForecastValue)
+                @if (item.FiveDayForecastValue == 1) 
+    {<span>DateTime.Today()</span>}
+                
+            </td>
+            <td>
+                @if (!isFarenheit)
                 {
-                @Html.DisplayFor(modelItem => item.CelsiusLow)
+                    @Html.DisplayFor(modelItem => item.CelsiusLow)
                 }
                 else
                 {
-                @Html.DisplayFor(modelItem => item.Low)
+                    @Html.DisplayFor(modelItem => item.Low)
+                }
+            </td>
+            <td>
+                @if (!isFarenheit)
+                {
+                    @Html.DisplayFor(modelItem => item.CelsiusHigh)
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.High)
                 }
             </td>
 
             <td>
-                @if(!isFarenheit)
-                {
-                @Html.DisplayFor(modelItem => item.CelsiusHigh)
-                }
-                else
-                {
-                @Html.DisplayFor(modelItem => item.High)
-                }
+                @Html.DisplayFor(modelItem => item.Forecast)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Forecast)
+
+                @if (item.Forecast == "sunny" && item.High > 75 && item.High - 20 > item.Low)
+                {<span>remember to bring sunscreen, wear breathable layers, and bring an extra gallon of water</span>}
+                else if (item.Forecast == "sunny" && item.High > 75)
+                {<span>remember bring sunscreen and an extra gallon of water </span>}
+                else if (item.Forecast == "sunny" && item.High - 20 > item.Low)
+                {<span>remember bring sunscreen and wear breathable layers </span>}
+                else if (item.Forecast == "sunny")
+                {<span>remember bring sunscreen</span>}
+
+                else if (item.Forecast == "rain" && item.High > 75 && item.High - 20 > item.Low)
+                {<span>remember to pack raingear and waterproof shoes. Bring an extra gallon of water and wear breathable layers. </span>}
+                else if (item.Forecast == "rain" && item.High > 75)
+                {<span>remember to pack raingear and waterproof shoes and an extra gallon of water </span>}
+                else if (item.Forecast == "rain" && item.High - 20 > item.Low)
+                {<span>remember to pack raingear and waterproof shoes and wear breathable layers</span>}
+                else if (item.Forecast == "rain")
+                {<span>bring rain gear and waterproof shoes</span> }
+
+                else if (item.Forecast == "snow" && item.High - 20 > item.Low)
+                {<span>bring snowshoes and breathable layers</span>}
+                else if (item.Forecast == "snow" && item.Low < 20)
+                {<span>bring snowshoes and be cautious of the dangers of exposure to freezing temperatures</span>}
+                else if (item.Forecast == "snow")
+                {<span>bring snowshoes</span>}
+
+                else if (item.Forecast == "thunderstorms" && item.High > 75 && item.High - 20 > item.Low)
+                {<span>seek shelter, avoid hiking on exposed ridges, wear breathable layers, and bring and extra gallon of water</span>}
+                else if (item.Forecast == "thunderstorms" && item.High > 75)
+                {<span>seek shelter, avoid hiking on exposed ridges, and bring and extra gallon of water</span>}
+                else if (item.Forecast == "thunderstorms" && item.High - 20 > item.Low)
+                {<span>seek shelter, avoid hiking on exposed ridges, and wear breathable layers</span>}
+                else if (item.Forecast == "thunderstorms")
+                {<span>seek shelter, avoid hiking on exposed ridges</span>}
+                else
+                {<span>have fun!</span> }
             </td>
         </tr>
     }
