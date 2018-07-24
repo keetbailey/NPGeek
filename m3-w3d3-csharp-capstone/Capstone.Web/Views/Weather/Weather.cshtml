@@ -1,29 +1,75 @@
-﻿@using Capstone.Web.Models
+﻿@model IList<Weather>
+@using Capstone.Web.Models
 
 @{
     ViewBag.Title = "Weather";
+
+    if (Session["isFarenheit"] == null)
+    {
+        Session["isFarenheit"] = true;
+    }
+    bool isFarenheit = (bool)Session["isFarenheit"];
 }
 
+<br />
+<br />
 <h2 style="text-align:center">
-    Please select your park
+    Five Day Weather Forecast
 </h2>
 
+<form action="/weather/changetemperaturescale" method="post">
+    <input name="id" type="hidden" value=@Model[0].ParkCode>
+    <button>change temperature scale</button> 
+</form>
 
 <table class="table">
-    <th>
-        Park Name
-    </th>
-    <th>
-        Day
-    </th>
-    <th>
-        Low
-    </th>
-    <th>
-        High
-    </th>
-    <th>
-        Forecast
-    </th>
-
+    <tr>
+        <th>
+            Day
+        </th>
+        <th>
+            Low
+        </th>
+        <th>
+            High
+        </th>
+        <th>
+            Forecast
+        </th>
+        <th></th>
     </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FiveDayForecastValue)
+            </td>
+            <td>
+                @if(!isFarenheit)
+                {
+                @Html.DisplayFor(modelItem => item.CelsiusLow)
+                }
+                else
+                {
+                @Html.DisplayFor(modelItem => item.Low)
+                }
+            </td>
+
+            <td>
+                @if(!isFarenheit)
+                {
+                @Html.DisplayFor(modelItem => item.CelsiusHigh)
+                }
+                else
+                {
+                @Html.DisplayFor(modelItem => item.High)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Forecast)
+            </td>
+        </tr>
+    }
+</table>

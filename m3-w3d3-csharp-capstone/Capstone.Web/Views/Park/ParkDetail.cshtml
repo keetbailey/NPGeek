@@ -51,9 +51,9 @@
         <td>
             <b><u>Animal Species</u></b> @Model.NumberOfAnimalSpecies
         </td>
-        @*<td>
-                <b>@Html.ActionLink("View 5-Day Forecast", "Weather", "Weather")</b>
-            </td>*@
+        <td>
+                <b>@Html.ActionLink("View 5-Day Forecast", "Index", "Weather", new { id = Model.ParkCode }, null)</b>
+            </td>
     </tr>
 </table>
 <table class="table">

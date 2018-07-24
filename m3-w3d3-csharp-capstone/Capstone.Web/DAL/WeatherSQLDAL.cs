@@ -8,16 +8,21 @@ using System.Data.SqlClient;
 
 namespace Capstone.Web.DAL
 {
-    public class WeatherSQLDAL 
+    public class WeatherSQLDAL : IWeatherSqlDAL
 
      {
         private readonly string connectionString = ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString;
-        private const string SqlGetWeather = "SELECT parkCode, fiveDayForecastValue, low, high, forecast FROM weather";
+        private const string SqlGetWeather = "SELECT parkCode, fiveDayForecastValue, low, high, forecast FROM weather WHERE parkCode = @parkCode";
 
-
-        public List<Weather> GetWeather()
+        public WeatherSQLDAL(string connectionString)
         {
-            List<Weather> WeatherResults = new List<Weather>();
+            this.connectionString = connectionString;
+        }
+
+
+        public IList<Weather> GetWeather(string id)
+        {
+            IList<Weather> WeatherResults = new List<Weather>();
 
             try
             {
@@ -27,6 +32,8 @@ namespace Capstone.Web.DAL
 
                     SqlCommand cmd = new SqlCommand(SqlGetWeather);
                     cmd.Connection = conn;
+
+                    cmd.Parameters.AddWithValue("@parkCode", id);
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     

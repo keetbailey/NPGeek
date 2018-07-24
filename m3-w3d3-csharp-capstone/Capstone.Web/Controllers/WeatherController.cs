@@ -7,25 +7,43 @@ using System.Configuration;
 using System.Web.Mvc;
 using Capstone.Web.DAL;
 
-
-
 namespace Capstone.Web.Controllers
 {
-    //public class WeatherController : Controller
-    //{
-    //    public WeatherController()
-    //    {
-    //        WeatherDAL = new WeatherSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
-    //    }
-        
-        
-    //    // GET: Weather
-    //    public ActionResult Index()
-    //    {
-    //        List<Weather> FiveDayWeather = WeatherDAL ();
+    public class WeatherController : Controller
+    {
+        private readonly IWeatherSqlDAL weatherDAL;
 
-    //        return View("Index", );
+        public WeatherController()
+        {
+            weatherDAL = new WeatherSQLDAL(ConfigurationManager.ConnectionStrings["NPGeekConnectionString"].ConnectionString);
         }
+
+
+
+        // GET: Weather
+        public ActionResult Index(string id)
+        {
+            IList<Weather> fiveDayWeather = weatherDAL.GetWeather(id);
+
+            return View("Weather", fiveDayWeather);
+        }
+
+        // Change Temeraure Scale 
+        [HttpPost]
+        public ActionResult ChangeTemperatureScale(string id)
+        {
+            if (Session["isFarenheit"] == null)
+            {
+                Session["isFarenheit"] = true;
+            }
+
+            Session["isFarenheit"] = !(bool)(Session["isFarenheit"]);
+
+            return RedirectToAction("Index", new { id = id });
+        }
+
+    }
+}
 
 
 
